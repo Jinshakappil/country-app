@@ -1,10 +1,13 @@
 
-// export default Slider;
+
 import React, { useState } from "react";
+
+// Import your images
 import img1a from "../assets/home-page-pic-1.PNG";
 import img1b from "../assets/home-page-pic-2.PNG";
 import img2a from "../assets/home-page-pic-2.PNG";
 import img2b from "../assets/home-page-pic-1.PNG";
+
 const slides = [
   { left: img1a, right: img1b },
   { left: img2a, right: img2b },
@@ -18,36 +21,42 @@ const Slider: React.FC = () => {
 
   return (
     <div className="position-relative">
-      <div className="d-flex justify-content-center align-items-center">
+      {/* Slide images */}
+      <div className="d-flex justify-content-center align-items-center flex-wrap gap-3">
         <img
           src={slides[index].left}
-          // alt="Left"
-          alt={`Slide ${index + 1}`}
-
+          alt="Left"
+          className="img-fluid"
           style={{
-          
-            marginRight: "10px",
-            objectFit: "cover", // optional: crop/scale nicely
-            width: "600px",
-             height: "200px",
+            maxWidth: "100%",
+            // width: "45%",
+            height: "auto",
+            objectFit: "cover",
           }}
         />
         <img
           src={slides[index].right}
-          // alt="Right"
-          alt={`Slide ${index - 1}`}
+          alt="Right"
+          className="img-fluid"
           style={{
-            width: "100px",
-             height: "200px",
+            maxWidth: "100%",
+            // width: "45%",
+            height: "auto",
             objectFit: "cover",
-            caretColor: 'transparent'
           }}
         />
       </div>
-      <div className="d-flex align-items-center justify-content-center mt-2">
+
+      {/* Navigation */}
+      <div className="d-flex align-items-center justify-content-center mt-3">
         <span
           onClick={prev}
-          style={{ cursor: "pointer", fontSize: "20px", marginRight: "10px" }}
+          style={{
+            cursor: "pointer",
+            fontSize: "20px",
+            marginRight: "10px",
+            userSelect: "none",
+          }}
         >
           ←
         </span>
@@ -58,8 +67,8 @@ const Slider: React.FC = () => {
             onClick={() => setIndex(i)}
             style={{
               display: "inline-block",
-              width: "8px",
-              height: "8px",
+              width: "10px",
+              height: "10px",
               borderRadius: "50%",
               backgroundColor: i === index ? "#000" : "#ccc",
               margin: "0 4px",
@@ -70,25 +79,16 @@ const Slider: React.FC = () => {
 
         <span
           onClick={next}
-          style={{ cursor: "pointer", fontSize: "20px", marginLeft: "10px" }}
+          style={{
+            cursor: "pointer",
+            fontSize: "20px",
+            marginLeft: "10px",
+            userSelect: "none",
+          }}
         >
           →
         </span>
       </div>
-      {/* <div className="d-flex justify-content-center mt-2">
-        <span 
-          onClick={prev}
-          style={{ cursor: 'pointer', fontSize: '24px', marginRight: '20px' }}
-        >
-          ←
-        </span>
-        <span 
-          onClick={next}
-          style={{ cursor: 'pointer', fontSize: '24px' }}
-        >
-          →
-        </span>
-      </div> */}
     </div>
   );
 };
